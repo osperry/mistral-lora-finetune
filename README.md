@@ -104,6 +104,8 @@ Adapter weights saved to `./adapters/`.
 
 Peak memory: ~16.7 GB. Total training time: under 3 minutes.
 
+![Validation Loss](assets/validation_loss.png)
+
 ---
 
 ## Step 3: Configure the Adapter
@@ -177,6 +179,9 @@ ollama run my-mistral "Your test prompt here"
 │   ├── train.jsonl
 │   ├── valid.jsonl
 │   └── test.jsonl
+├── assets/
+│   ├── validation_loss.png
+│   └── model_comparison.png
 └── adapters/
     └── adapter_config.json
 ```
@@ -196,6 +201,10 @@ ollama run my-mistral "Your test prompt here"
 
 ---
 
+![Model Comparison](assets/model_comparison.png)
+
+---
+
 ## Governance Notes
 
 - 57 training examples is a minimal dataset. Sufficient to demonstrate style transfer; expand before production-scale deployment.
@@ -206,7 +215,7 @@ ollama run my-mistral "Your test prompt here"
 
 ## About
 
-Oric Perry is a CRISC-certified cybersecurity executive with 25+ years in enterprise IAM, Zero Trust architecture, and AI governance. Contributing member of IEC 63452 (Cyber-Security for ICT) and BSIGEL 9/6AIML (AI/ML Governance for Cyber-Security). Principal Consultant at OSP Global Solutions.
+Oric Perry is a CRISC-certified cybersecurity executive with 25+ years in enterprise IAM, Zero Trust architecture, and AI governance. Co-author of IEC 63452 (Cyber-Security for ICT) and BSIGEL 9/6AIML (AI/ML Governance for Cyber-Security). Principal Consultant at OSP Global Solutions.
 
 - LinkedIn: [linkedin.com/in/oricperrycybergrc](https://linkedin.com/in/oricperrycybergrc)
 - GitHub: [github.com/osperry](https://github.com/osperry)
@@ -216,4 +225,3 @@ Oric Perry is a CRISC-certified cybersecurity executive with 25+ years in enterp
 ## License
 
 MIT
-# mistral-lora-finetune
