@@ -104,7 +104,7 @@ Adapter weights saved to `./adapters/`.
 
 Peak memory: ~16.7 GB. Total training time: under 3 minutes.
 
-![Validation Loss](assets/validation_loss.png)
+![Validation Loss](validation_loss.png)
 
 ---
 
@@ -201,7 +201,7 @@ ollama run my-mistral "Your test prompt here"
 
 ---
 
-![Model Comparison](assets/model_comparison.png)
+![Model Comparison](model_comparison.png)
 
 ---
 
