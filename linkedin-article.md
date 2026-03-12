@@ -1,78 +1,85 @@
-# I Fine-Tuned a 7B Model on My MacBook. Here's the Governance Case for Why You Should Care.
+# I Fine-Tuned a 7B Model on My MacBook. Here's What I Learned About Governed AI Deployment.
 
-Last week I fine-tuned Mistral 7B locally on Apple Silicon and deployed it through Ollama. The whole pipeline ran on my MacBook — training, fusing, converting, serving. I'm publishing the full technical walkthrough on GitHub because most tutorials skip the parts where things break. But the technical details aren't the point of this article.
-
-The point is the governance model behind it.
+This project started because I wanted to refresh myself on tuning a language model from scratch. What I ended up with was a working proof of concept for a governed, private AI workflow, and a clearer understanding of what ethical AI deployment requires in practice, not just in policy documents.
 
 ---
 
 ## Who I Am and Why That Context Matters
 
-I've spent 25 years in enterprise cybersecurity — workforce identity programs at Fortune 32 scale, Zero Trust architecture, IAM across 60,000-user environments. I hold a CRISC certification and have contributed to the development of two international standards: IEC 63452 on Cyber-Security for ICT and BSIGEL 9/6AIML on AI/ML Governance for Cyber-Security.
+I've spent 25 years in enterprise cybersecurity workforce identity programs at Fortune 32 scale, Zero Trust architecture, IAM across 60,000-user environments. I hold a CRISC certification and have contributed to two international standards: IEC 63452 on Cyber-Security for ICT and BSIGEL 9/6AIML on AI/ML Governance for Cyber-Security.
 
-I'm a practitioner who thinks carefully about data exposure, control architecture, and what "responsible AI deployment" actually means in practice — not just in policy documents.
-
-What I built here is small. The principles behind it aren't.
+My work is at the intersection of technical implementation and governance frameworks. This project was a deliberate attempt to close the gap between the two to build something small, observable, and governed, and then reason about what that process teaches.
 
 ---
 
-## The Problem with How Most Organizations Are Using AI Right Now
+## The Driver: Learning by Building
 
-Every time an employee pastes internal notes, draft communications, or organizational context into a commercial LLM API, that data is transmitted to a third-party processor. In most organizations, that transmission hasn't been formally evaluated under GDPR, HIPAA, or the organization's own data classification policy.
+I wanted to understand the fine-tuning lineage of a model as it progressed from planning through production. The only way to do that is to run it yourself, hit the failure points, and work through them. I call this the .doEffect.
 
-That's not a hypothetical risk. It's a gap that exists right now in most enterprise AI deployments.
+My secondary goal was to produce an output that demonstrates the outcome in terms anyone can evaluate. Human evaluation is accomplished through evaluating legitimate text. If a model learns to respond with brevity and directness, you can read that. You can use your choice of QA scoring to evaluate whether the tuning worked.
 
-The standard response is "we have a business agreement with the vendor." That's not a control. That's a contract. Controls prevent exposure. Contracts respond to it after the fact.
-
----
-
-## What I Built and Why
-
-My use case is straightforward: staff generate first-draft memos and documents from my notes. Every output is reviewed and approved by me before it goes anywhere.
-
-The model needed to match a specific communication standard — direct, brief, no filler. Off-the-shelf LLMs default to verbose, over-qualified language. Fine-tuning on curated examples of the actual standard I want is more durable than prompt engineering, which degrades over long context windows and doesn't hold across sessions.
-
-The governance architecture is the point:
-
-**Privacy**: The model runs locally. Nothing leaves the machine during inference. No API call, no data processor, no exposure.
-
-**Auditability**: The training data is 57 real examples I selected and controlled. I know exactly what the model was trained on. That's not true of any foundation model I didn't train myself.
-
-**Quality control**: Human review before every output ships. This is the control that makes the whole system safe to scale. The model produces a draft. I approve the final. That division of labor is explicit and enforced — not aspirational.
+The tertiary goal and the one that matters most for sharing this publicly was to reason through what managing an ethical AI initiative actually looks like when you're the one building it, not just auditing it.
 
 ---
 
-## The Technical Reality
+## What I Built
 
-This ran on a MacBook with Apple Silicon. Training took under 3 minutes. Peak memory was 16.7 GB. Validation loss dropped from 2.97 to 0.57 over 100 iterations.
+On my laptop, I tuned a model using a low-impact approach. The model was trained on real examples of my communication style, which is direct and concise. This is the standard I wanted the model to reproduce.
 
-The stack: MLX-LM for LoRA fine-tuning, llama.cpp for GGUF conversion, Ollama for local serving. All open source. All local.
+Team members use this model to generate first-draft memos and documents directly from my executive notes. Because the model was fine-tuned on my communication style, outputs require significantly less editing. Outputs are draft-ready and aligned to my voice before final human review and approval.
 
-The barrier to this kind of deployment is lower than most people think. The tooling exists and it works. What's been missing is documentation that covers the full path — including every error and fix — in one place.
+**The governance architecture is explicit:**
 
-That's what I published.
+- **Privacy**: The model runs locally and nothing leaves the machine during inference. This approach reduces the likelihood of data loss and minimizes model risk.
+- **Auditability**: The training data is 57 examples I selected and controlled. The model's behavior is traceable to a known, versioned dataset.
+- **Human-in-the-loop**: As a quality assurance checkpoint, every output passes through a human-gated review stage before promotion. It mirrors CI/CD pipeline discipline where no artifact ships without passing a defined quality gate. Removing that gate is where I observe AI deployment failures, socially and technically.
 
 ---
 
-## What This Means for Enterprise
+## The Ethical AI Dimension: Where IEC PT63452 Meets Practice
 
-I'm not suggesting every organization should fine-tune their own models. I am suggesting that local model deployment is now a viable option that belongs in the evaluation set when organizations make AI deployment decisions — especially for workflows that touch sensitive communications, personnel matters, legal drafts, or anything else with data classification implications.
+My contribution to International Electrotechnical Commission (IEC) PT63452 the international standard for Cyber-Security for Information and Communication Technology (ICT), currently at Final Draft International Standard (FDIS) delivery phase is directly relevant here. The standard addresses security requirements for ICT systems, and its principles map explicitly onto the governance decisions in this project. The work I've done in that standards group is what shaped how I designed the controls below.
 
-The questions worth asking:
+IEC PT63452 aligns with IEEE Ethics principles on three dimensions this project directly addresses:
 
-- What data are your employees sending to commercial AI APIs right now?
-- Has that data flow been evaluated under your privacy and security frameworks?
-- What would a locally hosted, human-reviewed AI workflow look like for your highest-sensitivity use cases?
+**1. Accountability and traceability of AI behavior.** IEEE Ethics and IEC PT63452 both require that automated systems be traceable and that their behavior can be explained and audited. A fine-tuned model trained on a known, versioned dataset satisfies this requirement in a way that a prompted model does not. System prompts are invisible to auditors. Training data is fixed and reviewable.
 
-These are governance questions. The technology to answer them is already available.
+**2. Human oversight in the model development lifecycle as a non-negotiable design requirement.** The standard's security framework, consistent with IEEE Ethics principles, treats human oversight of automated decision-making as a dependency. Without that control, model accuracy would be a concern.
+
+**3. Data minimization and privacy by design.** IEC PT63452 incorporates Privacy by Design (PbD) principles consistent with GDPR, HIPAA, and LGPD. Local inference where no data leaves the machine is the strongest possible implementation of data minimization for an AI workflow. Organizations that handle sensitive data can use capable AI without creating third-party data processor exposure they haven't evaluated or disclosed.
+
+---
+
+## What the Outcome Demonstrates
+
+Validation loss dropped from 2.97 to 0.57 over 100 training iterations. The chart below shows the full training run.
+
+![Validation Loss Chart](assets/validation_loss.png)
+
+The same question was asked to each model. The comparison below shows the difference in output between the fine-tuned model and the base Mistral model.
+
+![Model Comparison](assets/model_comparison.png)
+
+The output is legible. You can read a response and evaluate whether it meets the standard. That legibility is itself a governance property. It makes the model's behavior reviewable by non-technical stakeholders, which is a prerequisite for responsible deployment at any scale.
+
+---
+
+## Who This Is For
+
+This architecture is relevant to any organization that:
+- Handles sensitive communications that shouldn't leave internal infrastructure
+- Operates under GDPR, HIPAA, LGPD, or similar data privacy frameworks
+- Wants AI-assisted workflows with a defensible human oversight model
+
+The barrier to this kind of deployment is lower than most practitioners think. This model tuning process works on consumer hardware, and the governance model is straightforward to implement and audit.
 
 ---
 
 ## What's Next
 
-This is version one. 57 training examples demonstrates the approach. The next iteration expands the dataset, tightens validation, and documents the evaluation methodology more rigorously. I'm also exploring how this architecture applies to higher-stakes workflows where the privacy and auditability requirements are even more demanding.
+This is version one. The next iteration expands the training dataset and explores how this architecture applies to higher-stakes workflows. I'm also interested in how the traceability properties of fine-tuned local models map to emerging AI audit requirements under frameworks like the EU AI Act.
 
-The full technical walkthrough — every command, every error, every fix — is on GitHub. If you're building something similar or thinking through the governance implications for your organization, I'd like to hear from you.
+The full technical walkthrough is on GitHub. If you're working through similar questions on governed AI deployment, I'd like to hear from you.
 
 ---
 
@@ -80,6 +87,6 @@ The full technical walkthrough — every command, every error, every fix — is 
 
 ---
 
-*Oric Perry is a CRISC-certified cybersecurity executive and Principal Consultant at OSP Global Solutions, specializing in agentic AI security, workforce identity, and enterprise AI governance. Contributing member of IEC 63452 and BSIGEL 9/6AIML. 25+ years in enterprise cybersecurity.*
+*Oric Perry is a CRISC-certified cybersecurity executive and Principal Consultant at OSP Global Solutions, specializing in agentic AI security, workforce identity, and enterprise AI governance. Contributing member of IEC 63452 (Cyber-Security for ICT) and BSIGEL 9/6AIML (AI/ML Governance for Cyber-Security). 25+ years in enterprise cybersecurity.*
 
 *Connect: [linkedin.com/in/oricperrycybergrc](https://linkedin.com/in/oricperrycybergrc)*
