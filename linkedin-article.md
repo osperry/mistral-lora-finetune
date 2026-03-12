@@ -54,11 +54,11 @@ IEC PT63452 aligns with IEEE Ethics principles on three dimensions this project 
 
 Validation loss dropped from 2.97 to 0.57 over 100 training iterations. The chart below shows the full training run.
 
-![Validation Loss Chart](assets/validation_loss.png)
+![Validation Loss Chart](validation_loss.png)
 
 The same question was asked to each model. The comparison below shows the difference in output between the fine-tuned model and the base Mistral model.
 
-![Model Comparison](assets/model_comparison.png)
+![Model Comparison](model_comparison.png)
 
 The output is legible. You can read a response and evaluate whether it meets the standard. That legibility is itself a governance property. It makes the model's behavior reviewable by non-technical stakeholders, which is a prerequisite for responsible deployment at any scale.
 
