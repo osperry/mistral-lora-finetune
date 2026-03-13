@@ -83,7 +83,7 @@ The full technical walkthrough is on GitHub. If you're working through similar q
 
 ---
 
-**Full technical walkthrough and training pipeline: [GitHub link]**
+**Full technical walkthrough and training pipeline: https://github.com/osperry/mistral-lora-finetune**
 
 ---
 
