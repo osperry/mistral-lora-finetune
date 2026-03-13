@@ -201,7 +201,7 @@ ollama run my-mistral "Your test prompt here"
 
 ---
 
-![Model Comparison](assets/model_comparison.png)
+![Model Comparison](model_comparison.png)
 
 ---
 
