@@ -27,7 +27,7 @@ This is what responsible AI deployment looks like at the workflow level:
 
 ## Why This Architecture
 
-After 25 years in enterprise cybersecurity — including workforce identity programs at Fortune 32 scale and contributing to IEC 63452 (Cyber-Security for ICT) and BSIGEL 9/6AIML (AI/ML Governance) standards — the governance model here is deliberate:
+After 25 years in enterprise cybersecurity — including workforce identity programs at Fortune 32 scale and contributing to international standards work in AI/ML Governance and Cyber-Security for ICT — the governance model here is deliberate:
 
 - **Local inference** eliminates third-party data processor exposure under GDPR/HIPAA frameworks
 - **Fine-tuning on curated examples** produces deterministic style behavior more reliably than prompt engineering
@@ -104,7 +104,7 @@ Adapter weights saved to `./adapters/`.
 
 Peak memory: ~16.7 GB. Total training time: under 3 minutes.
 
-![Validation Loss](validation_loss.png)
+![Validation Loss](assets/validation_loss.png)
 
 ---
 
@@ -201,7 +201,7 @@ ollama run my-mistral "Your test prompt here"
 
 ---
 
-![Model Comparison](model_comparison.png)
+![Model Comparison](assets/model_comparison.png)
 
 ---
 
@@ -215,7 +215,7 @@ ollama run my-mistral "Your test prompt here"
 
 ## About
 
-Oric Perry is a CRISC-certified cybersecurity executive with 25+ years in enterprise IAM, Zero Trust architecture, and AI governance. Co-author of IEC 63452 (Cyber-Security for ICT) and BSIGEL 9/6AIML (AI/ML Governance for Cyber-Security). Principal Consultant at OSP Global Solutions.
+Oric Perry is a CRISC-certified cybersecurity executive with 25+ years in enterprise IAM, Zero Trust architecture, and AI governance. Contributing member of BSIGEL 9/6AIML (AI/ML Governance for Cyber-Security). Principal Consultant at OSP Global Solutions.
 
 - LinkedIn: [linkedin.com/in/oricperrycybergrc](https://linkedin.com/in/oricperrycybergrc)
 - GitHub: [github.com/osperry](https://github.com/osperry)
