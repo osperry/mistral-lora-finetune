@@ -6,7 +6,7 @@ This project started because I wanted to refresh myself on tuning a language mod
 
 ## Who I Am and Why That Context Matters
 
-I've spent 25 years in enterprise cybersecurity workforce identity programs at Fortune 32 scale, Zero Trust architecture, IAM across 60,000-user environments. I hold a CRISC certification and have contributed to two international standards: IEC 63452 on Cyber-Security for ICT and BSIGEL 9/6AIML on AI/ML Governance for Cyber-Security.
+I've spent 25 years in enterprise cybersecurity workforce identity programs at Fortune 32 scale, Zero Trust architecture, IAM across 60,000-user environments. I hold a CRISC certification and have contributed to international standards work in AI/ML Governance and Cyber-Security for ICT.
 
 My work is at the intersection of technical implementation and governance frameworks. This project was a deliberate attempt to close the gap between the two to build something small, observable, and governed, and then reason about what that process teaches.
 
@@ -36,17 +36,17 @@ Team members use this model to generate first-draft memos and documents directly
 
 ---
 
-## The Ethical AI Dimension: Where IEC PT63452 Meets Practice
+## The Ethical AI Dimension: Where NIST AI RMF Meets Practice
 
-My contribution to International Electrotechnical Commission (IEC) PT63452 the international standard for Cyber-Security for Information and Communication Technology (ICT), currently at Final Draft International Standard (FDIS) delivery phase is directly relevant here. The standard addresses security requirements for ICT systems, and its principles map explicitly onto the governance decisions in this project. The work I've done in that standards group is what shaped how I designed the controls below.
+The NIST AI Risk Management Framework (AI RMF, AI 100-1) provides a voluntary framework for organizations to manage risks associated with AI systems across the full model lifecycle. Its core functions, Govern, Map, Measure, and Manage, are directly applicable to what this project demonstrates. The governance decisions in this build map explicitly onto the AI RMF's principles for trustworthy AI deployment.
 
-IEC PT63452 aligns with IEEE Ethics principles on three dimensions this project directly addresses:
+NIST AI RMF aligns with IEEE Ethics principles on three dimensions this project directly addresses:
 
-**1. Accountability and traceability of AI behavior.** IEEE Ethics and IEC PT63452 both require that automated systems be traceable and that their behavior can be explained and audited. A fine-tuned model trained on a known, versioned dataset satisfies this requirement in a way that a prompted model does not. System prompts are invisible to auditors. Training data is fixed and reviewable.
+**1. Accountability and traceability of AI behavior.** The AI RMF and IEEE Ethics both require that automated systems be traceable and that their behavior can be explained and audited. A fine-tuned model trained on a known, versioned dataset satisfies this requirement in a way that a prompted model does not. System prompts are invisible to auditors. Training data is fixed and reviewable.
 
-**2. Human oversight in the model development lifecycle as a non-negotiable design requirement.** The standard's security framework, consistent with IEEE Ethics principles, treats human oversight of automated decision-making as a dependency. Without that control, model accuracy would be a concern.
+**2. Human oversight in the model development lifecycle as a non-negotiable design requirement.** The AI RMF's Govern function, consistent with IEEE Ethics principles, treats human oversight of automated decision-making as a core control. Without that control, model accuracy and accountability cannot be assured.
 
-**3. Data minimization and privacy by design.** IEC PT63452 incorporates Privacy by Design (PbD) principles consistent with GDPR, HIPAA, and LGPD. Local inference where no data leaves the machine is the strongest possible implementation of data minimization for an AI workflow. Organizations that handle sensitive data can use capable AI without creating third-party data processor exposure they haven't evaluated or disclosed.
+**3. Data minimization and privacy by design.** The AI RMF incorporates Privacy by Design (PbD) principles consistent with GDPR, HIPAA, and LGPD. Local inference where no data leaves the machine is the strongest possible implementation of data minimization for an AI workflow. Organizations that handle sensitive data can use capable AI without creating third-party data processor exposure they haven't evaluated or disclosed.
 
 ---
 
@@ -54,11 +54,11 @@ IEC PT63452 aligns with IEEE Ethics principles on three dimensions this project 
 
 Validation loss dropped from 2.97 to 0.57 over 100 training iterations. The chart below shows the full training run.
 
-![Validation Loss Chart](validation_loss.png)
+![Validation Loss Chart](assets/validation_loss.png)
 
 The same question was asked to each model. The comparison below shows the difference in output between the fine-tuned model and the base Mistral model.
 
-![Model Comparison](model_comparison.png)
+![Model Comparison](assets/model_comparison.png)
 
 The output is legible. You can read a response and evaluate whether it meets the standard. That legibility is itself a governance property. It makes the model's behavior reviewable by non-technical stakeholders, which is a prerequisite for responsible deployment at any scale.
 
@@ -87,6 +87,6 @@ The full technical walkthrough is on GitHub. If you're working through similar q
 
 ---
 
-*Oric Perry is a CRISC-certified cybersecurity executive and Principal Consultant at OSP Global Solutions, specializing in agentic AI security, workforce identity, and enterprise AI governance. Contributing member of IEC 63452 (Cyber-Security for ICT) and BSIGEL 9/6AIML (AI/ML Governance for Cyber-Security). 25+ years in enterprise cybersecurity.*
+*Oric Perry is a CRISC-certified cybersecurity executive and Principal Consultant at OSP Global Solutions, specializing in agentic AI security, workforce identity, and enterprise AI governance. Contributing member of BSIGEL 9/6AIML (AI/ML Governance for Cyber-Security). 25+ years in enterprise cybersecurity.*
 
 *Connect: [linkedin.com/in/oricperrycybergrc](https://linkedin.com/in/oricperrycybergrc)*
